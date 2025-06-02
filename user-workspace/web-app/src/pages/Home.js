@@ -87,16 +87,21 @@ function Home() {
   return (
     <div className="min-h-screen">
       {/* Banner Carousel */}
-      <div className="banner-carousel">
-        <Slider {...sliderSettings}>
+      <div className="banner-carousel relative">
+        <Slider {...{
+          ...sliderSettings,
+          nextArrow: <div className="slick-arrow slick-next !w-10 !h-10 !bg-white/50 hover:!bg-white rounded-full flex items-center justify-center before:content-['→'] before:text-2xl before:text-gray-600"></div>,
+          prevArrow: <div className="slick-arrow slick-prev !w-10 !h-10 !bg-white/50 hover:!bg-white rounded-full flex items-center justify-center before:content-['←'] before:text-2xl before:text-gray-600"></div>,
+        }}>
           {banners.map(banner => (
-            <div key={banner.id}>
+            <div key={banner.id} className="relative">
               <Link to={banner.link}>
                 <img 
                   src={banner.imageUrl} 
                   alt="Banner" 
-                  className="w-full h-auto"
+                  className="w-full h-[400px] object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </Link>
             </div>
           ))}

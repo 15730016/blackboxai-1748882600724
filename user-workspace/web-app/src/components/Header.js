@@ -33,11 +33,9 @@ function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img 
-              src="/static/images/top/logo_nobinobi.svg" 
-              alt="Nobinobi" 
-              className="h-8"
-            />
+            <div className="text-[#00a65f] font-bold text-2xl">
+              NOBINOBI
+            </div>
           </Link>
 
           {/* Search Bar */}

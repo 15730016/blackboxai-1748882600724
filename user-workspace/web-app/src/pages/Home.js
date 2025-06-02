@@ -112,12 +112,24 @@ function Home() {
               to={feature.link}
               className="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors"
             >
-              <img 
-                src={`/static/images/top/${feature.icon}.svg`}
-                alt={feature.title}
-                className="w-12 h-12 mb-2"
-              />
-              <span className="text-sm text-center">{feature.title}</span>
+              <div className="w-12 h-12 mb-2 flex items-center justify-center">
+                {feature.icon === 'hot_deal' && (
+                  <i className="fas fa-fire text-2xl text-red-500"></i>
+                )}
+                {feature.icon === 'attractive_offers' && (
+                  <i className="fas fa-gift text-2xl text-[#00a65f]"></i>
+                )}
+                {feature.icon === 'ship_24h' && (
+                  <i className="fas fa-truck text-2xl text-[#00a65f]"></i>
+                )}
+                {feature.icon === 'free_ship' && (
+                  <i className="fas fa-shipping-fast text-2xl text-[#00a65f]"></i>
+                )}
+                {feature.icon === 'return' && (
+                  <i className="fas fa-undo text-2xl text-[#00a65f]"></i>
+                )}
+              </div>
+              <span className="text-sm text-center font-medium">{feature.title}</span>
             </Link>
           ))}
         </div>

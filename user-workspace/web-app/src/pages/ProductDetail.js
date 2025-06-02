@@ -5,6 +5,9 @@ function ProductDetail() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
 
+  // In a real application, we would fetch product data using this id
+  console.log('Fetching product details for id:', id);
+
   // Mock product data (will be replaced with API data)
   const product = {
     name: "Dầu Tẩy Trang Kose Softymo Làm Sạch Nhanh 230ml",

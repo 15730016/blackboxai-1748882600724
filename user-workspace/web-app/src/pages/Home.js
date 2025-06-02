@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
@@ -152,40 +153,40 @@ function Home() {
       </div>
 
       {/* Features Section */}
-      <div className="container mx-auto py-8">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="container mx-auto py-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
           {features.map(feature => (
             <Link 
               key={feature.id}
               to={feature.link}
-              className="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors"
+              className="group flex flex-col items-center p-6 hover:bg-gray-50 rounded-lg transition-all hover:-translate-y-1 hover:shadow-md"
             >
-              <div className="w-12 h-12 mb-2 flex items-center justify-center">
+              <div className="w-16 h-16 mb-4 flex items-center justify-center bg-gray-50 rounded-full group-hover:bg-white group-hover:scale-110 transition-all">
                 {feature.icon === 'hot_deal' && (
-                  <i className="fas fa-fire text-2xl text-red-500"></i>
+                  <i className="fas fa-fire text-3xl text-red-500"></i>
                 )}
                 {feature.icon === 'attractive_offers' && (
-                  <i className="fas fa-gift text-2xl text-[#00a65f]"></i>
+                  <i className="fas fa-gift text-3xl text-[#00a65f]"></i>
                 )}
                 {feature.icon === 'ship_24h' && (
-                  <i className="fas fa-truck text-2xl text-[#00a65f]"></i>
+                  <i className="fas fa-truck text-3xl text-[#00a65f]"></i>
                 )}
                 {feature.icon === 'free_ship' && (
-                  <i className="fas fa-shipping-fast text-2xl text-[#00a65f]"></i>
+                  <i className="fas fa-shipping-fast text-3xl text-[#00a65f]"></i>
                 )}
                 {feature.icon === 'return' && (
-                  <i className="fas fa-undo text-2xl text-[#00a65f]"></i>
+                  <i className="fas fa-undo text-3xl text-[#00a65f]"></i>
                 )}
               </div>
-              <span className="text-sm text-center font-medium">{feature.title}</span>
+              <span className="text-sm text-center font-medium text-gray-600 group-hover:text-[#00a65f] transition-colors">{feature.title}</span>
             </Link>
           ))}
         </div>
       </div>
 
       {/* Products Grid */}
-      <div className="container mx-auto py-8">
-        <div className="flex justify-between items-center mb-6">
+      <div className="container mx-auto py-12">
+        <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-semibold">Sản phẩm nổi bật</h2>
           <Link 
             to="/collections"

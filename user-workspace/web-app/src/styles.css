@@ -1,0 +1,61 @@
+/* Product Card Styles */
+.product-card {
+  @apply bg-white rounded-lg shadow-sm transition-transform hover:shadow-md hover:-translate-y-1;
+}
+
+.price-discount {
+  @apply text-red-500 font-semibold text-lg;
+}
+
+.price-original {
+  @apply text-gray-500 line-through text-sm;
+}
+
+.discount-badge {
+  @apply bg-red-500 text-white text-xs px-2 py-1 rounded;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-[#00a65f] text-white py-2 px-4 rounded-md hover:bg-[#008f52] transition-colors;
+}
+
+/* Slider Styles */
+.slick-dots {
+  @apply !flex justify-center space-x-2;
+}
+
+.slick-dots li button:before {
+  @apply !text-white opacity-50;
+}
+
+.slick-dots li.slick-active button:before {
+  @apply !text-white opacity-100;
+}
+
+/* Banner Carousel */
+.banner-carousel {
+  @apply relative overflow-hidden;
+}
+
+.banner-carousel .slick-slide {
+  @apply relative;
+}
+
+.banner-carousel .slick-arrow {
+  @apply opacity-0 transition-opacity;
+}
+
+.banner-carousel:hover .slick-arrow {
+  @apply opacity-100;
+}
+
+/* Feature Icons */
+.feature-icon {
+  @apply w-12 h-12 rounded-full flex items-center justify-center transition-colors;
+}
+
+/* Voucher Card */
+.voucher-card {
+  @apply bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow;
+}

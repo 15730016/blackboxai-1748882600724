@@ -72,7 +72,43 @@ const products = [
   }
 ];
 
+const NextArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="slick-arrow slick-next !w-10 !h-10 !bg-white/50 hover:!bg-white rounded-full flex items-center justify-center absolute right-4 top-1/2 -translate-y-1/2 z-10"
+  >
+    <i className="fas fa-chevron-right text-gray-600"></i>
+  </button>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="slick-arrow slick-prev !w-10 !h-10 !bg-white/50 hover:!bg-white rounded-full flex items-center justify-center absolute left-4 top-1/2 -translate-y-1/2 z-10"
+  >
+    <i className="fas fa-chevron-left text-gray-600"></i>
+  </button>
+);
+
 function Home() {
+  const [showScrollTop, setShowScrollTop] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.pageYOffset > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -84,6 +120,7 @@ function Home() {
     fade: true,
     cssEase: 'linear',
     pauseOnHover: true,
+    arrows: true,
     dotsClass: 'slick-dots absolute bottom-4 !flex justify-center space-x-2',
     customPaging: () => (
       <div className="w-2 h-2 bg-white/50 rounded-full hover:bg-white/80 transition-colors"></div>
@@ -96,8 +133,8 @@ function Home() {
       <div className="banner-carousel relative">
         <Slider {...{
           ...sliderSettings,
-          nextArrow: <div className="slick-arrow slick-next !w-10 !h-10 !bg-white/50 hover:!bg-white rounded-full flex items-center justify-center before:content-['→'] before:text-2xl before:text-gray-600"></div>,
-          prevArrow: <div className="slick-arrow slick-prev !w-10 !h-10 !bg-white/50 hover:!bg-white rounded-full flex items-center justify-center before:content-['←'] before:text-2xl before:text-gray-600"></div>,
+          nextArrow: <NextArrow />,
+          prevArrow: <PrevArrow />
         }}>
           {banners.map(banner => (
             <div key={banner.id} className="relative">
@@ -161,20 +198,20 @@ function Home() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {products.map(product => (
-            <div key={product.id} className="product-card p-4">
-              <Link to={`/product/${product.id}`}>
-                <div className="relative pb-[100%] mb-4">
+            <div key={product.id} className="product-card p-4 hover:shadow-lg">
+              <Link to={`/product/${product.id}`} className="block">
+                <div className="relative pb-[100%] mb-4 overflow-hidden group">
                   <img 
                     src={product.imageUrl}
                     alt={product.name}
-                    className="absolute inset-0 w-full h-full object-contain"
+                    className="absolute inset-0 w-full h-full object-contain transition-transform group-hover:scale-105"
                   />
                 </div>
-                <h3 className="text-sm mb-2 line-clamp-2 h-10">
+                <h3 className="text-sm mb-2 line-clamp-2 h-10 text-gray-800 group-hover:text-[#00a65f]">
                   {product.name}
                 </h3>
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-2">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
                     <span className="price-discount">
                       {product.price.toLocaleString()}đ
                     </span>
@@ -187,8 +224,9 @@ function Home() {
                   </div>
                 </div>
               </Link>
-              <button className="btn-primary w-full mt-4">
-                Chọn mua
+              <button className="btn-primary w-full mt-4 flex items-center justify-center space-x-2">
+                <i className="fas fa-shopping-cart"></i>
+                <span>Chọn mua</span>
               </button>
             </div>
           ))}
@@ -196,29 +234,52 @@ function Home() {
       </div>
 
       {/* Voucher Section */}
-      <div className="container mx-auto py-8 bg-gray-50">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">Voucher của bạn</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-[#00a65f] rounded-full flex items-center justify-center">
-                <i className="fas fa-ticket-alt text-2xl text-white"></i>
-              </div>
-              <div>
-                <div className="font-semibold">VC_FREESHIP2025</div>
-                <div className="text-sm text-gray-500">
-                  HSD: 27 - 31/12/2025
+      <div className="bg-gray-50 py-12">
+        <div className="container mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-2xl font-semibold">Voucher của bạn</h2>
+            <Link to="/vouchers" className="text-[#00a65f] hover:underline flex items-center">
+              Xem tất cả
+              <i className="fas fa-chevron-right ml-2"></i>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((_, index) => (
+              <div key={index} className="voucher-card group">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-[#00a65f] rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <i className="fas fa-ticket-alt text-2xl text-white"></i>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-gray-800">Miễn phí vận chuyển</div>
+                    <div className="text-sm text-gray-500 mb-2">
+                      HSD: 27 - 31/12/2025
+                    </div>
+                    <button className="btn-primary text-sm w-full">
+                      Lấy ngay
+                    </button>
+                  </div>
                 </div>
-                <button className="btn-primary mt-2 text-sm">
-                  Lấy ngay
-                </button>
+                <div className="mt-4 pt-4 border-t border-dashed">
+                  <div className="text-sm text-gray-500">
+                    Đơn tối thiểu 500K
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-[#00a65f] text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-[#008f52] transition-colors z-50"
+          aria-label="Scroll to top"
+        >
+          <i className="fas fa-arrow-up"></i>
+        </button>
+      )}
     </div>
   );
 }

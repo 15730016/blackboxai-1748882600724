@@ -6,7 +6,7 @@ const banners = [
   {
     id: 1,
     imageUrl: "https://images.nobinobi.com.vn/clf-cdn/prod/413b05a11dd52b84d7ca64d31512af42.jpeg",
-    link: "/brand/77d8ed29-abd5-4e1d-83f0-53f5c7e18abb/smartangel"
+    link: "/brand/77d8ed29-abd5-4e1d-83f5c7e18abb/smartangel"
   },
   {
     id: 2,
@@ -23,31 +23,31 @@ const banners = [
 const features = [
   {
     id: 1,
-    icon: "hot_deal",
+    icon: 'hot_deal',
     title: "Siêu deal mỗi ngày",
     link: "/"
   },
   {
     id: 2,
-    icon: "attractive_offers",
+    icon: 'attractive_offers',
     title: "Ưu đãi hấp dẫn",
     link: "/"
   },
   {
     id: 3,
-    icon: "ship_24h",
+    icon: 'ship_24h',
     title: "Giao nhanh 2H",
     link: "/"
   },
   {
     id: 4,
-    icon: "free_ship",
+    icon: 'free_ship',
     title: "Miễn phí giao hàng",
     link: "/"
   },
   {
     id: 5,
-    icon: "return",
+    icon: 'return',
     title: "Đổi trả 15 ngày",
     link: "/"
   }
@@ -70,7 +70,6 @@ const products = [
     discount: 44,
     imageUrl: "https://images.nobinobi.com.vn/clf-cdn/prod/1d7d59118bb1916b386cc60543246a7c.png"
   }
-  // Add more products as needed
 ];
 
 function Home() {
@@ -81,7 +80,14 @@ function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000
+    autoplaySpeed: 5000,
+    fade: true,
+    cssEase: 'linear',
+    pauseOnHover: true,
+    dotsClass: 'slick-dots absolute bottom-4 !flex justify-center space-x-2',
+    customPaging: () => (
+      <div className="w-2 h-2 bg-white/50 rounded-full hover:bg-white/80 transition-colors"></div>
+    )
   };
 
   return (
@@ -197,11 +203,9 @@ function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <div className="flex items-center space-x-4">
-              <img 
-                src="/static/images/Voucher/Freeship.svg"
-                alt="Freeship"
-                className="w-16 h-16"
-              />
+              <div className="w-16 h-16 bg-[#00a65f] rounded-full flex items-center justify-center">
+                <i className="fas fa-ticket-alt text-2xl text-white"></i>
+              </div>
               <div>
                 <div className="font-semibold">VC_FREESHIP2025</div>
                 <div className="text-sm text-gray-500">
@@ -213,7 +217,6 @@ function Home() {
               </div>
             </div>
           </div>
-          {/* Add more vouchers as needed */}
         </div>
       </div>
     </div>

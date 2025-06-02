@@ -1,92 +1,206 @@
-import React from 'react';
-import Header from '../components/Header';
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
+const banners = [
+  {
+    id: 1,
+    imageUrl: "https://images.nobinobi.com.vn/clf-cdn/prod/413b05a11dd52b84d7ca64d31512af42.jpeg",
+    link: "/brand/77d8ed29-abd5-4e1d-83f0-53f5c7e18abb/smartangel"
+  },
+  {
+    id: 2,
+    imageUrl: "https://images.nobinobi.com.vn/clf-cdn/prod/00b052152db2963813a308aa45298203.jpeg",
+    link: "/collections/64ece1f3-ce6e-4a9e-9bc9-02681b764f82"
+  },
+  {
+    id: 3,
+    imageUrl: "https://images.nobinobi.com.vn/clf-cdn/prod/bc1287652204c7c4d1926d227aad6fec.jpeg",
+    link: "/collections/47cdbe21-7bdb-4cac-bdd0-260bd47aee87"
+  }
+];
+
+const features = [
+  {
+    id: 1,
+    icon: "hot_deal",
+    title: "Siêu deal mỗi ngày",
+    link: "/"
+  },
+  {
+    id: 2,
+    icon: "attractive_offers",
+    title: "Ưu đãi hấp dẫn",
+    link: "/"
+  },
+  {
+    id: 3,
+    icon: "ship_24h",
+    title: "Giao nhanh 2H",
+    link: "/"
+  },
+  {
+    id: 4,
+    icon: "free_ship",
+    title: "Miễn phí giao hàng",
+    link: "/"
+  },
+  {
+    id: 5,
+    icon: "return",
+    title: "Đổi trả 15 ngày",
+    link: "/"
+  }
+];
+
+const products = [
+  {
+    id: 1,
+    name: "Dầu Tẩy Trang Kose Softymo Làm Sạch Nhanh 230ml",
+    price: 104000,
+    originalPrice: 179000,
+    discount: 42,
+    imageUrl: "https://images.nobinobi.com.vn/clf-cdn/prod/c994cf4f8c590e7cf1492f04d9ae7db9.png"
+  },
+  {
+    id: 2,
+    name: "Nước Tẩy Trang Kose Softymo Làm Sạch Nhanh Cho Da 230ml",
+    price: 102000,
+    originalPrice: 179000,
+    discount: 44,
+    imageUrl: "https://images.nobinobi.com.vn/clf-cdn/prod/1d7d59118bb1916b386cc60543246a7c.png"
+  }
+  // Add more products as needed
+];
+
+function Home() {
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000
+  };
+
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      
-      {/* Hero Section */}
-      <div className="relative bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
-                <h1 className="text-4xl tracking-tight font-bold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block">Welcome to our</span>
-                  <span className="block text-black">Modern Website</span>
-                </h1>
-                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Create beautiful, responsive websites with modern design principles and clean aesthetics.
-                </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                  <div className="rounded-md shadow">
-                    <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800 md:py-4 md:text-lg md:px-10">
-                      Get started
-                    </button>
-                  </div>
-                  <div className="mt-3 sm:mt-0 sm:ml-3">
-                    <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gray-100 hover:bg-gray-200 md:py-4 md:text-lg md:px-10">
-                      Learn more
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </main>
-          </div>
-        </div>
+    <div className="min-h-screen">
+      {/* Banner Carousel */}
+      <div className="banner-carousel">
+        <Slider {...sliderSettings}>
+          {banners.map(banner => (
+            <div key={banner.id}>
+              <Link to={banner.link}>
+                <img 
+                  src={banner.imageUrl} 
+                  alt="Banner" 
+                  className="w-full h-auto"
+                />
+              </Link>
+            </div>
+          ))}
+        </Slider>
       </div>
 
       {/* Features Section */}
-      <div className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-            <h2 className="text-base text-black font-semibold tracking-wide uppercase">Features</h2>
-            <p className="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Better Design, Better Experiences
-            </p>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              Discover our comprehensive suite of features designed to enhance your digital presence.
-            </p>
-          </div>
-
-          <div className="mt-10">
-            <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-              {[1, 2, 3, 4].map((item) => (
-                <div key={item} className="relative">
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-black text-white">
-                    {/* Icon placeholder */}
-                    <div className="h-6 w-6 bg-white/30 rounded"></div>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Feature {item}</p>
-                  <p className="mt-2 ml-16 text-base text-gray-500">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="container mx-auto py-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {features.map(feature => (
+            <Link 
+              key={feature.id}
+              to={feature.link}
+              className="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <img 
+                src={`/static/images/top/${feature.icon}.svg`}
+                alt={feature.title}
+                className="w-12 h-12 mb-2"
+              />
+              <span className="text-sm text-center">{feature.title}</span>
+            </Link>
+          ))}
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            <span className="block">Ready to dive in?</span>
-            <span className="block text-black">Start your free trial today.</span>
-          </h2>
-          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-            <div className="inline-flex rounded-md shadow">
-              <button className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800">
-                Get started
+      {/* Products Grid */}
+      <div className="container mx-auto py-8">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold">Sản phẩm nổi bật</h2>
+          <Link 
+            to="/collections"
+            className="text-[#00a65f] hover:underline flex items-center"
+          >
+            Xem tất cả
+            <i className="fas fa-chevron-right ml-2"></i>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {products.map(product => (
+            <div key={product.id} className="product-card p-4">
+              <Link to={`/product/${product.id}`}>
+                <div className="relative pb-[100%] mb-4">
+                  <img 
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                </div>
+                <h3 className="text-sm mb-2 line-clamp-2 h-10">
+                  {product.name}
+                </h3>
+                <div className="space-y-1">
+                  <div className="flex items-center space-x-2">
+                    <span className="price-discount">
+                      {product.price.toLocaleString()}đ
+                    </span>
+                    <span className="discount-badge">
+                      -{product.discount}%
+                    </span>
+                  </div>
+                  <div className="price-original">
+                    {product.originalPrice.toLocaleString()}đ
+                  </div>
+                </div>
+              </Link>
+              <button className="btn-primary w-full mt-4">
+                Chọn mua
               </button>
             </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Voucher Section */}
+      <div className="container mx-auto py-8 bg-gray-50">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold">Voucher của bạn</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="flex items-center space-x-4">
+              <img 
+                src="/static/images/Voucher/Freeship.svg"
+                alt="Freeship"
+                className="w-16 h-16"
+              />
+              <div>
+                <div className="font-semibold">VC_FREESHIP2025</div>
+                <div className="text-sm text-gray-500">
+                  HSD: 27 - 31/12/2025
+                </div>
+                <button className="btn-primary mt-2 text-sm">
+                  Lấy ngay
+                </button>
+              </div>
+            </div>
           </div>
+          {/* Add more vouchers as needed */}
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Home;

@@ -1,19 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary-color: #00a65f;
+  --secondary-color: #333333;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --gray-light: #f5f5f5;
+  --gray-medium: #e0e0e0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Carousel Styles */
+.slick-prev,
+.slick-next {
+  z-index: 1;
+}
+
+.slick-prev {
+  left: 25px;
+}
+
+.slick-next {
+  right: 25px;
+}
+
+/* Product Card Styles */
+.product-card {
+  @apply bg-white rounded-lg shadow-sm transition-all duration-300;
+}
+
+.product-card:hover {
+  @apply shadow-md transform -translate-y-1;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-[#00a65f] text-white px-4 py-2 rounded-md hover:bg-[#008f52] transition-colors duration-300;
+}
+
+.btn-secondary {
+  @apply bg-gray-100 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors duration-300;
+}
+
+/* Header Styles */
+.header-nav {
+  @apply fixed top-0 left-0 right-0 bg-white shadow-sm z-50;
+}
+
+/* Price Styles */
+.price-original {
+  @apply line-through text-gray-400 text-sm;
+}
+
+.price-discount {
+  @apply text-red-500 font-semibold;
+}
+
+.discount-badge {
+  @apply bg-red-500 text-white text-xs px-2 py-1 rounded-md;
+}
+
+/* Category Navigation */
+.category-nav {
+  @apply flex items-center space-x-4 overflow-x-auto whitespace-nowrap py-4;
+}
+
+.category-item {
+  @apply px-4 py-2 rounded-md hover:bg-gray-100 transition-colors duration-300;
+}
+
+/* Banner Carousel */
+.banner-carousel {
+  @apply relative overflow-hidden;
+}
+
+.banner-carousel img {
+  @apply w-full h-auto object-cover;
+}
+
+/* Product Grid */
+.product-grid {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4;
+}
+
+/* Footer Styles */
+.footer {
+  @apply bg-gray-100 py-8 mt-12;
+}
+
+.footer-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .mobile-menu {
+    @apply fixed inset-0 bg-white z-50 transform transition-transform duration-300;
+  }
+  
+  .mobile-menu.hidden {
+    @apply translate-x-full;
+  }
+}
+
+/* Utility Classes */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
 }
